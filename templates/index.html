@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+<header class="masthead" style="background-image: url('static/assets/img/home-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Code Canvas</h1>
+                    <span class="subheading">A Blog to learn Programming</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+
+            <!-- Loop through posts -->
+            {% for id, title, subtitle, author, date in posts %}
+            <div class="post-preview">
+                <a href="/post/{{ id }}">
+                    <h2 class="post-title">{{ title }}</h2>
+                    <h3 class="post-subtitle">{{ subtitle }}</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by <a href="#!">{{ author }}</a> on {{ date }}
+                </p>
+            </div>
+            <hr class="my-4" />
+            {% endfor %}
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-between mb-4 px-0" style="width: 100%;">
+                {% if has_prev %}
+                <a class="btn btn-primary text-uppercase" href="/?page={{ page - 1 }}">← Newer Posts</a>
+                {% else %}
+                <span></span>
+                {% endif %}
+
+                {% if has_next %}
+                <a class="btn btn-primary text-uppercase" href="/?page={{ page + 1 }}">Older Posts →</a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
